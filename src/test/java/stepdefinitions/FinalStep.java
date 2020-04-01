@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -80,25 +81,24 @@ public class FinalStep {
 
 	@Then("User print all the prices values in decending order")
 	public void user_print_all_the_prices_values_in_decending_order() throws Throwable {
-		Thread.sleep(2000);
 		js.executeScript("window.scrollBy(0,900)");
 		
-		ArrayList<String> p = new ArrayList<String>();
-		Thread.sleep(5000);
-		p.add(pf.getP1().getText());
-		p.add(pf.getP2().getText());
-		p.add(pf.getP3().getText());
-		p.add(pf.getP4().getText());
-		p.add(pf.getP5().getText());
+		ArrayList<String> pricelist = new ArrayList<String>();
+		wait.until(ExpectedConditions.visibilityOf(pf.getP1()));
+		pricelist.add(pf.getP1().getText());
+		pricelist.add(pf.getP2().getText());
+		pricelist.add(pf.getP3().getText());
+		pricelist.add(pf.getP4().getText());
+		pricelist.add(pf.getP5().getText());
 
-		for (String prices : p) {
+		for (String prices : pricelist) {
 
 			System.out.println("Price values: " + (prices));
 		}
 		
 		
-		Collections.sort(p, Collections.reverseOrder());
-		for (String prices : p) {
+		Collections.sort(pricelist, Collections.reverseOrder());
+		for (String prices : pricelist) {
 			System.out.println("Price Values in descending order: " + prices);
 		}
 	}
@@ -115,7 +115,6 @@ public class FinalStep {
 
 	@Then("User verify the total price with shipping")
 	public void user_verify_the_total_price_with_shipping() throws Throwable {
-		Thread.sleep(2000);
 		js.executeScript("window.scrollBy(0, 450)");
 		wait.until(ExpectedConditions.visibilityOf(pf.getProduct()));
 		String productprice = pf.getProduct().getText();
@@ -141,11 +140,9 @@ public class FinalStep {
 
 	@Then("User logout and close the browser")
 	public void User_logout_and_close_the_browser() throws Throwable {
-		Thread.sleep(2000);
-		js.executeScript("window.scrollBy(0, -450)");
+		js.executeScript("window.scrollTo(0, 0)");
 		wait.until(ExpectedConditions.elementToBeClickable(pf.getLogout()));
 		pf.getLogout().click();
-		Thread.sleep(2000);
 		driver.close();
 	}
 
