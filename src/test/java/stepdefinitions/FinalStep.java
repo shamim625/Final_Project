@@ -26,7 +26,7 @@ public class FinalStep {
 	static JavascriptExecutor js;
 	static Actions action;
 	static Finalpf pf;
-	WebDriverWait wait;
+	static WebDriverWait wait;
 
 	@Given("User go to the website")
 	public void user_go_to_the_website() {
@@ -105,7 +105,7 @@ public class FinalStep {
 
 	@Then("User select the second dress on that list")
 	public void user_select_the_second_dress_on_that_list() throws Throwable {
-		wait.until(ExpectedConditions.elementToBeClickable((pf.getRightblock())));
+		wait.until(ExpectedConditions.visibilityOf((pf.getRightblock())));
 		action.moveToElement(pf.getRightblock()).perform();
 		wait.until(ExpectedConditions.elementToBeClickable(pf.getAddtocart()));
 		pf.getAddtocart().click();

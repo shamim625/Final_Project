@@ -1,6 +1,6 @@
-@smoketest
+@Final_Shamim
 
-Feature: Automate the website
+Feature: Smarttech automation project
 
 Scenario: Login to the website and add a dress to the cart
 Given User go to the website

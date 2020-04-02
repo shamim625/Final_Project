@@ -9,8 +9,9 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
 		features= "src/test/resources",
 		glue= {"stepdefinitions"},
-		tags= {"@smoketest"},
+		tags= {"@Final_Shamim"},
 		plugin= {"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/reports.html"},
+		
 		
 		monochrome= true,
 		strict= true
